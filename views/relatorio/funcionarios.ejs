@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MinhaEmpresa</title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+        <h1>Relatório de tempo de serviço</h1>
+        <h3>Bem-vindo(a) ao MinhaEmpresa</h3>
+
+        <table>
+            <tr>
+                <h3>Funcionários:</h3>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Admissão</th>
+                <th>Demissão</th>
+                <th>Promoções</th>
+                <th>Salário</th>
+            </tr>
+            <% for (func of data){ %>
+            <tr>
+                <td><%= func.nome %></td>
+                <td><%= func.cargo %></td>
+                <td>
+                    <%= new Date(func.admissao).toLocaleDateString('pt-BR') %>
+                </td>
+                <td>
+                    <%= func.demissao? new
+                    Date(func.demissao).toLocaleDateString('pt-BR') : "" %>
+                </td>
+                <td><%= func.quantidade_promocoes %></td>
+                <td>R$ <%= parseFloat(func.salario_atual).toFixed(2) %></td>
+            </tr>
+            <% } %>
+        </table>
+
+        <a href="/"><button>Dashboard</button></a>
+    </body>
+</html>

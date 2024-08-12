@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MinhaEmpresa</title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+        <h1>Contratação de funcionário</h1>
+        <h3>Bem-vindo(a) ao MinhaEmpresa</h3>
+        <form action="/" method="POST">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="" />
+
+            <label for="cargo">Cargo:</label>
+            <input type="text" id="cargo" name="cargo" placeholder="" />
+            <label for="data">Data da contratação:</label>
+            <input type="date" id="data" name="data" placeholder="" />
+            <label for="salario">Salário inicial: R$</label>
+            <input
+                type="number"
+                id="salario"
+                name="salario"
+                placeholder=""
+                value="1412"
+                min="0"
+                step="0.01"
+            />
+            <input type="reset" value="Limpar" />
+            <input type="submit" value="Confirmar contratação" />
+        </form>
+        <a href="/"><button type="button">Voltar</button></a>
+        <script>
+            Date.prototype.toDateInputValue = function () {
+                var local = new Date(this);
+                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                return local.toJSON().slice(0, 10);
+            };
+            document.getElementById("data").value =
+                new Date().toDateInputValue();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MinhaEmpresa</title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+        <h1>Promover funcionário</h1>
+        <h3>Bem-vindo(a) ao MinhaEmpresa</h3>
+
+        <h2>Nome: <%= funcionario.nome %></h2>
+        <p>Cargo: <%= funcionario.cargo %></p>
+        <h2>
+            Salário atual: R$ <%=
+            parseFloat(funcionario.salario_atual).toFixed(2) %>
+        </h2>
+
+        <form action="<%= '/'+funcionario.id+'/promocao' %>" method="POST">
+            <label for="valor">Aumento: </label>
+            <input
+                type="number"
+                id="valor"
+                name="valor"
+                min="0.01"
+                max="200"
+                step="0.01"
+                value="0.5"
+                required
+            />%
+            <br />
+            <label for="data">Data da promoção: </label>
+            <input type="date" id="data" name="data" required />
+            <br />
+            <input type="submit" value="Salvar" />
+        </form>
+
+        <a href="<%= '/'+funcionario.id %>"><button>Voltar</button></a>
+        <a href="/"><button>Dashboard</button></a>
+        <script>
+            Date.prototype.toDateInputValue = function () {
+                var local = new Date(this);
+                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                return local.toJSON().slice(0, 10);
+            };
+            document.getElementById("data").value =
+                new Date().toDateInputValue();
+        </script>
+    </body>
+</html>

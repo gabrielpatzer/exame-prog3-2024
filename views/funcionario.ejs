@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MinhaEmpresa</title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+        <h1>Dados do funcionário</h1>
+        <h3>Bem-vindo(a) ao MinhaEmpresa</h3>
+
+        <h2>Nome: <%= dados.funcionario.nome %></h2>
+        <p>Cargo: <%= dados.funcionario.cargo %></p>
+        <p>
+            Data de admissão: <%= new
+            Date(dados.funcionario.admissao).toLocaleDateString('pt-BR') %>
+        </p>
+        <p>
+            Salário inicial: R$ <%=
+            parseFloat(dados.funcionario.salario_inicial).toFixed(2) %>
+        </p>
+        <p>Promoções:</p>
+        <% if (dados.promocoes.length > 0) { %>
+        <ul>
+            <% for (p of dados.promocoes){ %>
+            <li>
+                <%= new Date(p.data).toLocaleDateString('pt-BR') %>: <%=
+                parseFloat(p.valor).toFixed(2) %>%
+            </li>
+            <% } %>
+        </ul>
+        <% } else { %>
+        <li>Funcionário sem aumentos salariais</li>
+        <% } %>
+        <h2>
+            Salário atual: R$ <%=
+            parseFloat(dados.funcionario.salario_atual).toFixed(2) %>
+        </h2>
+
+        <a href="<%= '/'+dados.funcionario.id+'/promocao' %>"
+            ><button>Promover</button></a
+        >
+        <a href="<%= '/'+dados.funcionario.id+'/demissao' %>"
+            ><button>Demitir</button></a
+        >
+        <a href="/"><button>Dashboard</button></a>
+    </body>
+</html>
